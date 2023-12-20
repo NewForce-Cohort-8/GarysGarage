@@ -1,11 +1,13 @@
 namespace Garage
 {
-    public class Zero  : Vehicle// Electric motorcycle
+    public class Zero  : Vehicle, IElectricVehicles// Electric motorcycle
     {
         public double BatteryKWh { get; set; }
+        public int CurrentChargePercentage {get; set;}
         public void ChargeBattery()
         {
-            // method definition omitted
+            CurrentChargePercentage = 100;
+            Console.WriteLine($"We can't go potato without any go go juice - 100%");
         }
           public override void Drive()
         {

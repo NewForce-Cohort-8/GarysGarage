@@ -13,37 +13,93 @@ namespace Garage
     {
         static void Main(string[] args) 
         {
+            // Zero fxs = new Zero();
+            // fxs.MainColor = "purple";
+            // fxs.MaximumOccupancy = 2;
+            // fxs.BatteryKWh = 22.5;
+            // Tesla modelS = new Tesla();
+            // modelS.MainColor = "red";
+            // modelS.MaximumOccupancy = 4;
+            // modelS.BatteryKWh = 25.3;
+            // Cessna mx410 = new Cessna();
+            // mx410.MainColor = "blue";
+            // mx410.MaximumOccupancy = 4;
+            // mx410.FuelCapacity = 60.4;
+            // Ram dodger = new Ram();
+            // dodger.MainColor = "silver";
+            // dodger.MaximumOccupancy = 5;
+            // dodger.FuelCapacity = 35.2;
+
+            // fxs.Drive();
+            // modelS.Drive();
+            // mx410.Drive();
+            // dodger.Drive();
+
+            // fxs.Stop();
+            // modelS.Stop();
+            // mx410.Stop();
+            // dodger.Stop();
+
+            // fxs.Turn("north");
+            // modelS.Turn("right");
+            // mx410.Turn("left");
+            // dodger.Turn("u");
+
+
+
+
             Zero fxs = new Zero();
-            fxs.MainColor = "purple";
-            fxs.MaximumOccupancy = 2;
-            fxs.BatteryKWh = 22.5;
+            Zero fx = new Zero();
             Tesla modelS = new Tesla();
-            modelS.MainColor = "red";
-            modelS.MaximumOccupancy = 4;
-            modelS.BatteryKWh = 25.3;
-            Cessna mx410 = new Cessna();
-            mx410.MainColor = "blue";
-            mx410.MaximumOccupancy = 4;
-            mx410.FuelCapacity = 60.4;
-            Ram dodger = new Ram();
-            dodger.MainColor = "silver";
-            dodger.MaximumOccupancy = 5;
-            dodger.FuelCapacity = 35.2;
+            
+            fxs.CurrentChargePercentage = 40;
 
-            fxs.Drive();
-            modelS.Drive();
-            mx410.Drive();
-            dodger.Drive();
+            List<IElectricVehicles> electricVehicles = new List<IElectricVehicles>() {
+                fx, fxs, modelS
+            };
 
-            fxs.Stop();
-            modelS.Stop();
-            mx410.Stop();
-            dodger.Stop();
+            Console.WriteLine("Electric Vehicles");
+            foreach(IElectricVehicles ev in electricVehicles)
+            {
+                Console.WriteLine($"{ev.CurrentChargePercentage}");
+            }
 
-            fxs.Turn("north");
-            modelS.Turn("right");
-            mx410.Turn("left");
-            dodger.Turn("u");
+            foreach(IElectricVehicles ev in electricVehicles)
+            {
+                // This should charge the vehicle to 100%
+                ev.ChargeBattery();
+            }
+
+            foreach(IElectricVehicles ev in electricVehicles)
+            {
+                Console.WriteLine($"{ev.CurrentChargePercentage}");
+            }
+
+            /***********************************************/
+
+            Ram ram = new Ram ();
+            Cessna cessna150 = new Cessna ();
+
+            List<IGasVehicles> gasVehicles = new List<IGasVehicles>() {
+                ram, cessna150
+            };
+
+            Console.WriteLine("Gas Vehicles");
+            foreach(IGasVehicles gv in gasVehicles)
+            {
+                Console.WriteLine($"{gv.CurrentTankPercentage}");
+            }
+
+            foreach(IGasVehicles gv in gasVehicles)
+            {
+                // This should completely refuel the gas tank
+                gv.RefuelTank();
+            }
+
+            foreach(IGasVehicles gv in gasVehicles)
+            {
+                Console.WriteLine($"{gv.CurrentTankPercentage}");
+            }
         }
     }
 }
